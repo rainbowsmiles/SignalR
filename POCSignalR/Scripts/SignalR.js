@@ -5,6 +5,18 @@ var myHub = $.connection.myHub;
 			//console.log('it worked');
 			writeToPage('It worked');
 			myHub.server.announce("tada!!");
+			myHub.server.getServerDateTime()
+				.done(function (data) {
+					writeToPage(data)
+				})
+				.fail(function (error) {
+					writeToPage("Error getting the server dateTime: " + error);
+				});
+			myHub.server.getServerDateTime2()
+				.done()
+				.fail(function (error) {
+					writeToPage("Error getting the server dateTime: " + error);
+				});
 		})
 		.fail(function () {
 			//alert('failed');
@@ -13,6 +25,10 @@ var myHub = $.connection.myHub;
 
 	myHub.client.announce = function (message) {
 		writeToPage(message);
+	}
+
+	myHub.client.displayDateTime = function (data) {
+		writeToPage(data);
 	}
 
 	var writeToPage = function (message) {
