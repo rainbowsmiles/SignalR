@@ -1,22 +1,25 @@
-﻿(function(){
-var myHub = $.connection.myHub;
+﻿(function () {
+	$("#click-me").on("click", function () {
+		myHub.server.getServerDateTime()
+			.done(function (data) {
+				writeToPage(data)
+			})
+			.fail(function (error) {
+				writeToPage("Error getting the server dateTime: " + error);
+			});
+	});
+	var myHub = $.connection.myHub;
 	$.connection.hub.start()
 		.done(function () {
 			//console.log('it worked');
 			writeToPage('It worked');
 			myHub.server.announce("tada!!");
-			myHub.server.getServerDateTime()
-				.done(function (data) {
-					writeToPage(data)
-				})
-				.fail(function (error) {
-					writeToPage("Error getting the server dateTime: " + error);
-				});
-			myHub.server.getServerDateTime2()
-				.done()
-				.fail(function (error) {
-					writeToPage("Error getting the server dateTime: " + error);
-				});
+			
+			//myHub.server.getServerDateTime2()
+			//	.done()
+			//	.fail(function (error) {
+			//		writeToPage("Error getting the server dateTime: " + error);
+			//	});
 		})
 		.fail(function () {
 			//alert('failed');
@@ -27,9 +30,9 @@ var myHub = $.connection.myHub;
 		writeToPage(message);
 	}
 
-	myHub.client.displayDateTime = function (data) {
-		writeToPage(data);
-	}
+	//myHub.client.displayDateTime = function (data) {
+	//	writeToPage(data);
+	//}
 
 	var writeToPage = function (message) {
 		$("#welcome-messages").append(message + "<br/>");

@@ -13,10 +13,10 @@ namespace POCSignalR
             Clients.All.Announce(message);
         }
 
-        public void GetServerDateTime2()
-        {
-            Clients.Caller.DisplayDateTime(DateTime.Now);
-        }
+        //public void GetServerDateTime2()
+        //{
+        //    Clients.Caller.DisplayDateTime(DateTime.Now);
+        //}
 
         public DateTime GetServerDateTime()
         {
