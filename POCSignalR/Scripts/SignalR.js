@@ -1,6 +1,6 @@
 ﻿(function () {
 	$("#click-me").on("click", function () {
-		myHub.server.getServerDateTime()
+		chat.server.getServerDateTime()
 			.done(function (data) {
 				writeToPage(data)
 			})
@@ -8,12 +8,13 @@
 				writeToPage("Error getting the server dateTime: " + error);
 			});
 	});
-	var myHub = $.connection.myHub;
+	//var myHub = $.connection.myHub;//INFO: camelCase is a must. On .cs the class name is "MyHub", in js it needs to be "myHub"
+	var chat = $.connection.ChatHub;// INFO: if HubName attributes are used, the name needs to be exactly the same. In this case "ChatHub". And it's mandatory to use the hubName now, the class name won't work anymore
 	$.connection.hub.start()
 		.done(function () {
 			//console.log('it worked');
 			writeToPage('It worked');
-			myHub.server.announce("tada!!");
+			chat.server.announceToEverybody("tada!!");
 			
 			//myHub.server.getServerDateTime2()
 			//	.done()
@@ -26,7 +27,7 @@
 			writeToPage("Error connecting to SignalR");
 		});
 
-	myHub.client.announce = function (message) {
+	chat.client.announce = function (message) {
 		writeToPage(message);
 	}
 
@@ -40,4 +41,4 @@
 })()
 
 
-//(function(){})() - Immediately Invoked Function Expression - wrap all code inside of a function in order to take the variables out of the global scope
+//INFO: (function(){})() - Immediately Invoked Function Expression - wrap all code inside of a function in order to take the variables out of the global scope
