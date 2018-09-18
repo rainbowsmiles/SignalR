@@ -8,7 +8,7 @@ namespace POCSignalR
     {
         public void Configuration(IAppBuilder app)
         {
-            app.MapSignalR();
+            app.MapSignalR(); //NIFO: register the middleWare. SignalR will be mapped
             ConfigureAuth(app);
         }
     }

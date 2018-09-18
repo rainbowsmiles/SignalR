@@ -8,7 +8,7 @@ using Microsoft.AspNet.SignalR.Hubs;
 namespace POCSignalR
 {
     [HubName("ChatHub")]
-    public class MyHub : Hub
+    public class MyHub : Hub //INFO:  we need a hub deriving from "Hub" class
     {
         [HubMethodName("announceToEverybody")] //INFO: recommandation to use camelCase notation for naming,  so it will be less confuzing on js side
         public void Announce(string message)
